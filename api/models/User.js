@@ -36,25 +36,25 @@ module.exports = {
         return obj;
     }
   },
-  // beforeCreate: function(user, cb) {
-  //   console.log(user);
-  //   if(user.password !== user.password_confirmation){
-  //     // todo: needs to go to error parser/builder
-  //     cb({error: 'Password does not match password confirmation'})
-  //   }
+  beforeCreate: function(user, cb) {
+    console.log(user);
+    if(user.password !== user.password_confirmation){
+      // todo: needs to go to error parser/builder
+      cb({error: 'Password does not match password confirmation'})
+    }
 
-  //   bcrypt.genSalt(16, function(err, salt){
-  //     bcrypt.hash(user.password, salt, function(err, hash){
-  //       if(err){
-  //         cb(err);
-  //       }
-  //       else {
-  //         user.password = hash;
-  //         cb();
-  //       }
-  //     });
-  //   });
-  // }
+    bcrypt.genSalt(16, function(err, salt){
+      bcrypt.hash(user.password, salt, function(err, hash){
+        if(err){
+          cb(err);
+        }
+        else {
+          user.password = hash;
+          cb();
+        }
+      });
+    });
+  }
   
 };
 
