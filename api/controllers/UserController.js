@@ -15,6 +15,7 @@ module.exports = {
 
   create: function(req,res){
     User.create(req.body).exec(function(err, user){
+      conosle.log('created user', err, user);
       if(err){
         res.json(err);
       }
