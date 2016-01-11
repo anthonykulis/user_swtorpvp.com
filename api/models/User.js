@@ -40,7 +40,18 @@ module.exports = {
     console.log(user);
     if(user.password !== user.password_confirmation){
       // todo: needs to go to error parser/builder
-      cb({error: 'Password does not match password confirmation'})
+      error = {
+        error: 'E_VALIDATION',
+        status: 400,
+        summary: '1 attribute is invalid',
+        invalidAttributes: {
+          password_confirmation: [
+            message: "Password confirmation doesn't match password"
+          ]
+        }
+      };
+      cb(error);
+
     }
 
     bcrypt.genSalt(16, function(err, salt){
