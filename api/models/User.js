@@ -31,6 +31,7 @@ module.exports = {
     }
   },
   beforeCreate: function(user, cb) {
+    console.log(user);
     if(user.password !== user.password_confirmation){
       // todo: needs to go to error parser/builder
       cb({error: 'Password does not match password confirmation'})
