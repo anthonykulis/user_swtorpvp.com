@@ -20,6 +20,14 @@ module.exports = {
       required: true,
       type: 'string',
       minLength: 8
+    },
+    emails_allowed: {
+      type: 'boolean'
+    },
+    toJSON: function() {
+        var obj = this.toObject();
+        delete obj.password;
+        return obj;
     }
   },
   beforeCreate: function(user, cb) {
