@@ -2,7 +2,7 @@
 
 exports.up = function(knex, Promise) {
   
-  knex.schema.dropTable('users');
+  knex.schema.dropTable('user');
   knex.schema.createTable('user', function(table){
     table.increments();
     table.timestamps();
