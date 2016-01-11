@@ -9,5 +9,16 @@ module.exports = {
 	find: function(req, res){
     res.json({works: true});
   }
+
+  create: function(req,res){
+    User.create(req.body).exec(err, user){
+      if(err){
+        res.json(err);
+      }
+      else{
+        res.json(user);
+      }
+    }
+  }
 };
 
