@@ -7,7 +7,10 @@
 
 module.exports = {
 	find: function(req, res){
-    res.json({works: true});
+    User.find().exec(function(err,users){
+      if(err) res.json(500, err);
+      else res.json(users);
+    });
   },
 
   create: function(req,res){
