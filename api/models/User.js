@@ -24,9 +24,15 @@ module.exports = {
     emails_allowed: {
       type: 'boolean'
     },
+    password_confirmation: {
+      type: 'string',
+      required: true,
+      minLength: 8
+    },
     toJSON: function() {
         var obj = this.toObject();
         delete obj.password;
+        delete user.password_confirmation;
         return obj;
     }
   },
@@ -36,6 +42,7 @@ module.exports = {
       // todo: needs to go to error parser/builder
       cb({error: 'Password does not match password confirmation'})
     }
+
     bcrypt.genSalt(16, function(err, salt){
       bcrypt.hash(user.password, salt, function(err, hash){
         if(err){
