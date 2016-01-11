@@ -45,9 +45,9 @@ module.exports = {
         status: 400,
         summary: '1 attribute is invalid',
         invalidAttributes: {
-          password_confirmation: [
+          password_confirmation: [{
             message: "Password confirmation doesn't match password"
-          ]
+          }]
         }
       };
       cb(error);
