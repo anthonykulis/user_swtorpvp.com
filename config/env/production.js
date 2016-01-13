@@ -35,9 +35,8 @@ module.exports = {
   //   level: "silent"
   // }
 
-  // models: {
-  //   connection: 'productionPostgresServer',
-  //   migrate: 'alter'
-  // }
+  models: {
+    connection: 'productionPostgresServer'
+  }
 
 };
