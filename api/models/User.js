@@ -24,7 +24,6 @@ module.exports = {
     emails_allowed: {
       type: 'boolean'
     },
-
     sessions: {
       collection: 'session',
       via: 'user'

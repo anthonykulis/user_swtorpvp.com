@@ -9,17 +9,18 @@ var passport = require('passport');
 
 module.exports = {
 	
-
   // log the user in
   create: function(req, res) {
+    console.log('creating session');
     passport.authenticate('local', function(err, user, info){
+      console.log('on auth', user, info);
       if(err){ res.json(500, err); }
       else if(!user){ res.json(422, {message: 'Bad Email/Password'})}
       else 
         req.logIn(user, function(err){
           if(err){ res.json(500, err);}
           else 
-            Session.findOrCreate({user: user.id, logged_out: false}).exec(function(err, session){
+            Session.findOrCreate({user: user.id, active: true}).exec(function(err, session){
               if(err){ res.json(500, err); }
               res.json(session);
             });
