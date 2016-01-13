@@ -36,7 +36,7 @@ module.exports = {
       return res.json(401, {});
 
 
-    Session.update({id: req.params.id, user: req.session.passport.user}, {logged_out: true}).exec(function(err, session){
+    Session.update({id: req.params.id, user: req.session.passport.user}, {active: false}).exec(function(err, session){
       if(err){ res.json(500, err); }
       else
         req.logOut();
