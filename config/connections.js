@@ -61,6 +61,10 @@ module.exports.connections = {
   *                                                                          *
   ***************************************************************************/
 
+  productionMongoServer: {
+    adapter: 'sails-mongo',
+    url: process.env.MONGOLAB_URI
+  },
 
   productionPostgresServer: {
     adapter: 'sails-postgresql',
