@@ -1,7 +1,7 @@
 'use strict';
 
 exports.up = function(knex, Promise) {
-  knex.schema.createTable('user', function(table){
+  return knex.schema.createTable('user', function(table){
     table.bigIncrements();
     table.timestamps();
     table.string('email').unique().notNullable();
@@ -11,5 +11,5 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  knex.schema.dropTable('user');
+  return knex.schema.dropTable('user');
 };
