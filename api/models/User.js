@@ -35,10 +35,10 @@ module.exports = {
       defaultsTo: false
     },
 
-    // sessions: {
-    //   collection: 'session',
-    //   via: 'user'
-    // },
+    sessions: {
+      collection: 'session',
+      via: 'user'
+    },
     toJSON: function() {
         var obj = this.toObject();
         delete obj.password;

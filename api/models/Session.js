@@ -8,7 +8,13 @@
 module.exports = {
 
   attributes: {
-
+    user: {
+      model: 'user'
+    },
+    active: {
+      type: 'boolean',
+      defaultsTo: true
+    }
   }
 };
 
