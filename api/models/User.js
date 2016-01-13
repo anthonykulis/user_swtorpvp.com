@@ -24,10 +24,10 @@ module.exports = {
     emails_allowed: {
       type: 'boolean'
     },
-    password_confirmation: {
-      type: 'string',
-      required: true,
-      minLength: 8
+
+    sessions: {
+      collection: 'session',
+      via: 'user'
     },
     toJSON: function() {
         var obj = this.toObject();
@@ -54,6 +54,8 @@ module.exports = {
 
     }
 
+    delete user.password_confirmation;
+    
     bcrypt.genSalt(16, function(err, salt){
       bcrypt.hash(user.password, salt, function(err, hash){
         if(err){
