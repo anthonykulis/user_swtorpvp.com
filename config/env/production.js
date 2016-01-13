@@ -36,7 +36,7 @@ module.exports = {
   // }
 
   models: {
-    connection: 'productionMongoServer'
+    connection: 'productionPostgreServer'
   }
 
 };
