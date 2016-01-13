@@ -9,11 +9,19 @@ var bcrypt = require('bcrypt');
 
 module.exports = {
 
+  uniqueEmail: false,
+
+  types: {
+    uniqueEmail: function(value){
+      return uniqueEmail;
+    }
+  }
   attributes: {
     email: {
       unique: true,
       required: true,
-      type: 'string'
+      type: 'string',
+      email: 'true'
     },
     password: {
       required: true,
@@ -35,6 +43,14 @@ module.exports = {
         return obj;
     }
   },
+
+  beforeValidate: function(user, cb){
+    User.findOne({email: user.email}).exec(function(err, rec){
+      uniqueEmail = !(err || rec);
+      cb();
+    });
+  },
+
   beforeCreate: function(user, cb) {
 
     if(user.password !== user.password_confirmation){
