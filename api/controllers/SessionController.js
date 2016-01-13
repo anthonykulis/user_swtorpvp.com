@@ -11,7 +11,7 @@ module.exports = {
     passport.authenticate('local', function(err, user, info) {
       if(err){ return res.json(500, err);}
       if(!user){ return res.json(422, {}); }
-      Session.findOrCreate({id: req.params.id}, {user: user.id, active: true}).exec(function(err, session){
+      Session.findOrCreate({user: user.id}, {user: user.id, active: true}).exec(function(err, session){
         if(err){ return res.json(500, err); }
         return res.json(session);
       });
