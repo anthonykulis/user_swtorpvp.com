@@ -2,10 +2,10 @@
 
 exports.up = function(knex, Promise) {
   knex.schema.createTable('sessions', function(table){
-    table.increments();
+    table.bigIncrements();
     table.timestamps();
-    table.bigInteger('user').index().inTable('user').references('id');
-    table.boolean('logged_out');
+    table.bigInteger('user_id').index().inTable('user').references('id');
+    table.boolean('logged_in');
   });  
 };
 
