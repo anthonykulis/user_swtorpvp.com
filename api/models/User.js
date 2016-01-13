@@ -16,13 +16,14 @@ module.exports = {
       return uniqueEmail;
     }
   },
-  
+
   attributes: {
     email: {
       unique: true,
       required: true,
       type: 'string',
-      email: 'true'
+      email: 'true',
+      uniqueEmail: true
     },
     password: {
       required: true,
