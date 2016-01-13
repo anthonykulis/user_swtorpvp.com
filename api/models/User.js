@@ -21,7 +21,11 @@ module.exports = {
       type: 'string',
       minLength: 8
     },
-
+    password_confirmation: {
+      required: true,
+      type: 'string',
+      minLength: 8
+    },
     emails_allowed: {
       type: 'boolean'
     },
@@ -32,7 +36,6 @@ module.exports = {
     toJSON: function() {
         var obj = this.toObject();
         delete obj.password;
-        delete obj.password_confirmation;
         return obj;
     }
   },
