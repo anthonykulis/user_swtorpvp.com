@@ -33,7 +33,7 @@ module.exports = {
 
   log: {
     level: "verbose"
-  }
+  },
 
   models: {
     connection: 'productionPostgresServer'
