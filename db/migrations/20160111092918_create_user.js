@@ -10,7 +10,7 @@ exports.up = function(knex, Promise) {
   // });
 
   knex.schema.createTable('session', function(table){
-    table.bigIncrements();
+    table.increments();
     table.timestamps();
     // table.bigInteger('user_id').index().inTable('user').references('id');
     table.boolean('logged_in');
