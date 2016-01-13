@@ -30,11 +30,11 @@ module.exports = {
     //   collection: 'session',
     //   via: 'user'
     // },
-    toJSON: function() {
-        var obj = this.toObject();
-        delete obj.password;
-        return obj;
-    }
+    // toJSON: function() {
+    //     var obj = this.toObject();
+    //     delete obj.password;
+    //     return obj;
+    // }
   },
   beforeCreate: function(user, cb) {
 
