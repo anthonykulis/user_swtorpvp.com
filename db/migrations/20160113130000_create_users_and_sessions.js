@@ -18,6 +18,6 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  knex.schema.dropTable('session'); 
+  // knex.schema.dropTable('session'); 
   knex.schema.dropTable('user');
 };
