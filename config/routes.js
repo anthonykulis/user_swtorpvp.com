@@ -33,8 +33,14 @@ module.exports.routes = {
   ***************************************************************************/
 
   // USERS
-  'GET /users': 'Users.find',
-  'POST /users': 'Users.create',
+  'GET /users': {
+    controller: 'User',
+    action: 'find'
+  },
+  'POST /users': {
+    controller: 'User',
+    action: 'create'
+  },
 
 
   // SESSIONS
