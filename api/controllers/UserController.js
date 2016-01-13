@@ -7,7 +7,6 @@
 
 module.exports = {
 	find: function(req, res){
-    console.log('on find');
     User.find().exec(function(err,users){
       if(err) res.json(500, err);
       else res.json(users);

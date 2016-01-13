@@ -11,18 +11,18 @@ module.exports = {
 
   attributes: {
     email: {
-      // unique: true,
-      // required: true,
+      unique: true,
+      required: true,
       type: 'string'
     },
     password: {
-      // required: true,
+      required: true,
       type: 'string',
-      // minLength: 8
+      minLength: 8
     },
     emails_allowed: {
       type: 'boolean',
-      // defaultsTo: false
+      defaultsTo: false
     },
 
     // sessions: {
@@ -37,7 +37,6 @@ module.exports = {
   },
   beforeCreate: function(user, cb) {
 
-    console.log('before create', user);
     if(user.password !== user.password_confirmation){
       // todo: needs to go to error parser/builder
       error = {
@@ -63,7 +62,6 @@ module.exports = {
         }
         else {
           user.password = hash;
-          console.log('user pass', user);
           cb();
         }
       });
