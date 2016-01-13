@@ -3,7 +3,7 @@
 exports.up = function(knex, Promise) {
   knex.schema.createTable('user', function(table){
     table.bigIncrements();
-    table.timestamps();
+    // table.timestamps();
     table.string('email');
     table.string('password');
     table.boolean('emails_allowed');
