@@ -11,7 +11,7 @@ module.exports = {
     passport.authenticate('local', function(err, user, info) {
       if(err){ return res.json(500, err);}
       if(!user){ return res.json(422, {}); }
-      Session.findOrCeate({id: req.params.id}, {user: user.id, active: true}).exec(function(err, session){
+      Session.findOrCreate({id: req.params.id}, {user: user.id, active: true}).exec(function(err, session){
         if(err){ return res.json(500, err); }
         return res.json(session);
       });
@@ -19,6 +19,8 @@ module.exports = {
   },
 
   destroy: function(req, res) {
+    // need to be able to login via browser before attempting this. 
+    // make sure its the user logging out their own session and that it is an active sesssion
     req.logout();
   }
 };
