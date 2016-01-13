@@ -6,7 +6,6 @@ exports.up = function(knex, Promise) {
     table.timestamps();
     table.string('email').unique().notNullable();
     table.string('password').notNullable();
-    table.string('password_confirmation').notNullable();
     table.boolean('emails_allowed').defaultTo(false);
   });
 };

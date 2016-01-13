@@ -21,14 +21,12 @@ module.exports = {
       type: 'string',
       minLength: 8
     },
-    password_confirmation: {
-      required: true,
-      type: 'string',
-      minLength: 8
-    },
+
     emails_allowed: {
-      type: 'boolean'
+      type: 'boolean',
+      defaultsTo: false
     },
+    
     // sessions: {
     //   collection: 'session',
     //   via: 'user'
