@@ -32,11 +32,11 @@ module.exports = {
    ***************************************************************************/
 
   log: {
-    level: "verbose"
+    level: "silent"
   },
 
   models: {
-    connection: 'productionPostgresServer'
+    connection: 'productionMongoServer'
   }
 
 };
