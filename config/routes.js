@@ -38,9 +38,9 @@ module.exports.routes = {
 
 
   // SESSIONS
-  'POST /sessions': 'Session.create',
-  'DESTROY /sessions/:id': 'Session.destroy',
-  'GET /sessions': 'Session.find'
+  // 'POST /sessions': 'Session.create',
+  // 'DESTROY /sessions/:id': 'Session.destroy',
+  // 'GET /sessions': 'Session.find'
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
