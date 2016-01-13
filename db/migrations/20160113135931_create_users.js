@@ -4,9 +4,9 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable('user', function(table){
     table.bigIncrements();
     table.timestamps();
-    table.string('email').unique().notNullable();
-    table.string('password').notNullable();
-    table.boolean('emails_allowed').defaultTo(false);
+    table.string('email');
+    table.string('password');
+    table.boolean('emails_allowed');
   });
 };
 
