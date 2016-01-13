@@ -1,7 +1,7 @@
 'use strict';
 
 exports.up = function(knex, Promise) {
-  knex.schema('public').createTable('user', function(table){
+  knex.schema.withSchema('public').createTable('user', function(table){
     table.bigIncrements();
     table.timestamps();
     table.string('email');
