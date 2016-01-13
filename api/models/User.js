@@ -29,10 +29,10 @@ module.exports = {
     emails_allowed: {
       type: 'boolean'
     },
-    sessions: {
-      collection: 'session',
-      via: 'user'
-    },
+    // sessions: {
+    //   collection: 'session',
+    //   via: 'user'
+    // },
     toJSON: function() {
         var obj = this.toObject();
         delete obj.password;
