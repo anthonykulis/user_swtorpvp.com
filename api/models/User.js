@@ -21,12 +21,11 @@ module.exports = {
       type: 'string',
       minLength: 8
     },
-
     emails_allowed: {
       type: 'boolean',
       defaultsTo: false
     },
-    
+
     // sessions: {
     //   collection: 'session',
     //   via: 'user'
