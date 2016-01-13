@@ -15,7 +15,8 @@ module.exports = {
     uniqueEmail: function(value){
       return uniqueEmail;
     }
-  }
+  },
+  
   attributes: {
     email: {
       unique: true,
