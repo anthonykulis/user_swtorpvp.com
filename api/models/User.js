@@ -27,7 +27,7 @@ module.exports = {
 
     sessions: {
       collection: 'session',
-      via: 'user_id'
+      via: 'user'
     },
     toJSON: function() {
         var obj = this.toObject();
