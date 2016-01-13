@@ -11,18 +11,18 @@ module.exports = {
 
   attributes: {
     email: {
-      unique: true,
-      required: true,
+      // unique: true,
+      // required: true,
       type: 'string'
     },
     password: {
-      required: true,
+      // required: true,
       type: 'string',
-      minLength: 8
+      // minLength: 8
     },
     emails_allowed: {
       type: 'boolean',
-      defaultsTo: false
+      // defaultsTo: false
     },
 
     // sessions: {
