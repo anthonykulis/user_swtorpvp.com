@@ -8,12 +8,12 @@
 module.exports = {
 
   attributes: {
-    user: {
+    user_id: {
       model: 'User'
     },
-    logged_out: {
+    logged_in: {
       type: 'boolean',
-      default: false
+      default: true
     },
 
   }
