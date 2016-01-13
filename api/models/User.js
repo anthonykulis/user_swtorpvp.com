@@ -25,10 +25,10 @@ module.exports = {
       type: 'boolean'
     },
 
-    sessions: {
-      collection: 'session',
-      via: 'user_id'
-    },
+    // sessions: {
+    //   collection: 'session',
+    //   via: 'user_id'
+    // },
     toJSON: function() {
         var obj = this.toObject();
         delete obj.password;

@@ -8,9 +8,9 @@
 module.exports = {
 
   attributes: {
-    user_id: {
-      model: 'User'
-    },
+    // user_id: {
+    //   model: 'User'
+    // },
     logged_in: {
       type: 'boolean',
       default: true
