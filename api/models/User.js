@@ -63,6 +63,7 @@ module.exports = {
         }
         else {
           user.password = hash;
+          console.log('user pass', user.password);
           cb();
         }
       });
