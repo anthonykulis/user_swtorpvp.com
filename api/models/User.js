@@ -21,6 +21,7 @@ module.exports = {
       type: 'string',
       minLength: 8
     },
+
     emails_allowed: {
       type: 'boolean'
     },
@@ -37,6 +38,7 @@ module.exports = {
   },
   beforeCreate: function(user, cb) {
 
+    console.log('before create', user);
     if(user.password !== user.password_confirmation){
       // todo: needs to go to error parser/builder
       error = {
