@@ -11,7 +11,13 @@ module.exports = {
   create: function(req,res){
     User.create(req.body).exec(function(err, user){
       if(err) return res.json(422,err);
-      else return res.json(user);
+      Session.create({user: user.id, active: false}).exec(function(err, session){
+        if(err) return res.json(500, err);
+        User.update({id: user.id}, {session: session.id}).exec(function(err, user){
+          if(err) return res.json(500, err);
+          return res.json(user);
+        })
+      });
     });
   },
 

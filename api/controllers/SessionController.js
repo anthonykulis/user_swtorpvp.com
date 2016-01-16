@@ -23,6 +23,14 @@ module.exports = {
     // make sure its the user logging out their own session and that it is an active sesssion
     req.logout();
 
-  }
+  },
+
+  findOne: function(req, res){
+    Session.findOne({id: req.params.id}).exec(function(err, session){
+      if(err) return res.json(500, err);
+      return res.json(session);
+    });
+  },
+
 };
 
