@@ -6,22 +6,60 @@
  */
 
 module.exports = {
-	find: function(req, res){
-    User.find().exec(function(err,users){
-      if(err) res.json(500, err);
-      else res.json(users);
+
+  // Todo: Will need an email confirmation to activate account
+  create: function(req,res){
+    User.create(req.body).exec(function(err, user){
+      if(err) return res.json(500, err);
+      Session.create({user: user.id, active: false}).exec(function(err, session){
+        if(err) return res.json(500, err);
+        
+        User.update({id: user.id}, {session: session.id}).exec(function(err, user){
+          if(err) return res.json(500, err);
+          return res.json(user);
+        })
+      });
     });
   },
 
-  create: function(req,res){
-    User.create(req.body).exec(function(err, user){
-      if(err){
-        res.json(422,err);
-      }
-      else{
-        res.json(user);
-      }
+  // TOOD: Must be role based, Minimum role user
+	find: function(req, res){
+    User.find().exec(function(err,users){
+      if(err) return res.json(500, err);
+      else return res.json(users);
+    });
+  },
+
+  // TODO: Must be role based. Minimum role user
+  findOne: function(req, res){
+    User.findOne({id: req.params.id}).populate('session').exec(function(err, user){
+      if(err) return res.json(500,err);
+      else return res.json(user);
+    });
+  },
+
+  // TODO: Must be role based. User or Admin
+  update: function(req, res){
+    // right now, only emails
+    email = req.body.email;
+    User.update({id: req.params.id}, {email: email}).exec(function(err, user){
+      if(err) return res.json(500, err);
+      return res.json(user);
+    });
+  },
+
+  // TODO: Only self user (or admin) can turn off accounts. Needs middleware
+  destroy: function(req, res){
+    User.update({id: req.params.id}, {active: false}).exec(function(err, user){
+      if(err) return res.json(500, err);
+      Session.update({user: user.id}, {logged_out: true}).exec(function(err, session){
+        if(err) return res.json(500,err);
+        return res.json({});
+      });
+
     });
   }
+
 };
+
 
