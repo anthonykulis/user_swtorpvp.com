@@ -41,9 +41,9 @@ module.exports = {
     session: {
       model: 'session'
     },
-    // profile: {
-    //   model: 'profile'
-    // },
+    profile: {
+      model: 'profile'
+    },
 
     toJSON: function() {
         var obj = this.toObject();
