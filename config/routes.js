@@ -42,8 +42,10 @@ module.exports.routes = {
 
   // SESSIONS
   'POST /sessions': 'Session.create',
+  
+  'GET /sessions': 'Session.find',
+  'GET /sessions/:id': 'Session.findOne',
   'DESTROY /sessions/:id': 'Session.destroy',
-  'GET /sessions': 'Session.find'
   
 
   /***************************************************************************

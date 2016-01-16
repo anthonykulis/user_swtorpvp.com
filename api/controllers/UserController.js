@@ -10,9 +10,10 @@ module.exports = {
   // Todo: Will need an email confirmation to activate account
   create: function(req,res){
     User.create(req.body).exec(function(err, user){
-      if(err) return res.json(422,err);
+      if(err) return res.json(500, err);
       Session.create({user: user.id, active: false}).exec(function(err, session){
         if(err) return res.json(500, err);
+        
         User.update({id: user.id}, {session: session.id}).exec(function(err, user){
           if(err) return res.json(500, err);
           return res.json(user);
@@ -34,6 +35,16 @@ module.exports = {
     User.findOne({id: req.params.id}).populate('session').exec(function(err, user){
       if(err) return res.json(500,err);
       else return res.json(user);
+    });
+  },
+
+  // TODO: Must be role based. User or Admin
+  update: function(req, res){
+    // right now, only emails
+    email = req.body.email;
+    User.update({id: req.params.id}, {email: email}).exec(function(err, user){
+      if(err) return res.json(500, err);
+      return res.json(user);
     });
   },
 

@@ -54,24 +54,12 @@ module.exports = {
 
   beforeUpdate: function(user, cb){
 
-    console.log('beforeUpdate', user);
-    // for now, while I do not know what the user model completely
-    // looks like, this is good enough
-
     // no password update
     delete user.password
 
     // cannot deactivate account here but can be activated here
     if(_.has(user, 'active') && user.active !== true) delete user.active
 
-    // cannot change profiles nor sessions
-    delete user.session
-    delete user.profile
-
-    // okay, user email cannot exist
-    
-
-    console.log('done with beforeUpdate', user);
     cb();
   },
 
