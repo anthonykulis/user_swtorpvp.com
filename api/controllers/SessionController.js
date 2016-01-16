@@ -13,15 +13,18 @@ module.exports = {
   // log the user in
   create: function(req, res) {
     passport.authenticate('local', function(err, user, info){
-      if(err){ res.json(500, err); }
-      else if(!user){ res.json(422, {message: 'Bad Email/Password'})}
+      if(err){ return es.json(500, err); }
+      else if(!user){ return res.json(422, {message: 'Bad Email/Password'})}
       else 
         req.logIn(user, function(err){
-          if(err){ res.json(500, err);}
+          if(err){ return res.json(500, err);}
           else 
             Session.findOrCreate({user: user.id, logged_out: false}).exec(function(err, session){
-              if(err){ res.json(500, err); }
-              res.json(session);
+              if(err){ return res.json(500, err); }
+              User.update({id: user.id}, {session: session.id}).exec(function(err, log){
+                if(err) return res.json(500, err);
+                return res.json(session);
+              });              
             });
             
         });
@@ -46,8 +49,8 @@ module.exports = {
   // not meant to be public.... so will eventually need to be authed and cross-referenced aganst role
   find: function(req, res){
     Session.find().populate('user').exec(function(err, sessions){
-      if(err) res.json(500, err);
-      else res.json(sessions);
+      if(err) return res.json(500, err);
+      else return res.json(sessions);
     });
   }
 };
