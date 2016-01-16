@@ -26,7 +26,7 @@ module.exports = {
   },
 
   findOne: function(req, res){
-    Session.findOne({id: req.params.id}).exec(function(err, session){
+    Session.findOne({id: req.params.id}).populate('user').exec(function(err, session){
       if(err) return res.json(500, err);
       return res.json(session);
     });
