@@ -34,16 +34,34 @@ module.exports = {
       type: 'boolean',
       defaultsTo: false
     },
-
-    sessions: {
-      collection: 'session',
-      via: 'user'
+    active: {
+      type: 'boolean',
+      defaultsTo: true
     },
+    session: {
+      model: 'session'
+    },
+    profile: {
+      model: 'profile'
+    },
+
     toJSON: function() {
         var obj = this.toObject();
         delete obj.password;
         return obj;
     }
+  },
+
+  beforeUpdate: function(user, cb){
+
+    // no password update if not current user is user passed
+    if(user.password && user.password_confirmation && user.password === user.password_confirmation)
+      return this.beforeCreate(user, cb);
+
+    // cannot deactivate account here but can be activated here
+    if(_.has(user, 'active') && user.active !== true) delete user.active
+
+    cb();
   },
 
   beforeValidate: function(user, cb){
