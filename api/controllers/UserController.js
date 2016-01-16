@@ -67,7 +67,7 @@ module.exports = {
   destroy: function(req, res){
     User.update({id: req.params.id}, {active: false}).exec(function(err, user){
       if(err) return res.json(500, err);
-      Session.update({user: user.id}, {active: true}).exec(function(err, session){
+      Session.update({user: user.id}, {active: false}).exec(function(err, session){
         if(err) return res.json(500,err);
         return res.json({});
       });
