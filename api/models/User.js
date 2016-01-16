@@ -9,12 +9,21 @@ var bcrypt = require('bcrypt');
 
 module.exports = {
 
+  uniqueEmail: false,
+
+  types: {
+    uniqueEmail: function(value){
+      return uniqueEmail;
+    }
+  },
+
   attributes: {
     email: {
       unique: true,
       required: true,
-      email: true,
-      type: 'string'
+      type: 'string',
+      email: 'true',
+      uniqueEmail: true
     },
     password: {
       required: true,
@@ -22,7 +31,8 @@ module.exports = {
       minLength: 8
     },
     emails_allowed: {
-      type: 'boolean'
+      type: 'boolean',
+      defaultsTo: false
     },
 
     sessions: {
@@ -32,10 +42,17 @@ module.exports = {
     toJSON: function() {
         var obj = this.toObject();
         delete obj.password;
-        delete obj.password_confirmation;
         return obj;
     }
   },
+
+  beforeValidate: function(user, cb){
+    User.findOne({email: user.email}).exec(function(err, rec){
+      uniqueEmail = !(err || rec);
+      cb();
+    });
+  },
+
   beforeCreate: function(user, cb) {
 
     if(user.password !== user.password_confirmation){

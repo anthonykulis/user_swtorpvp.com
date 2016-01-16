@@ -9,13 +9,12 @@ module.exports = {
 
   attributes: {
     user: {
-      model: 'User'
+      model: 'user'
     },
-    logged_out: {
+    active: {
       type: 'boolean',
-      default: false
-    },
-
+      defaultsTo: true
+    }
   }
 };
 

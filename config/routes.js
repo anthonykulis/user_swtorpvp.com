@@ -33,14 +33,30 @@ module.exports.routes = {
   ***************************************************************************/
 
   // USERS
-  'GET /users': 'Users.find',
-  'POST /users': 'Users.create',
+  'GET /users': {
+    controller: 'User',
+    action: 'find'
+  },
+  'POST /users': {
+    controller: 'User',
+    action: 'create'
+  },
 
 
   // SESSIONS
-  'POST /sessions': 'Session.create',
-  'DESTROY /sessions/:id': 'Session.destroy',
-  'GET /sessions': 'Session.find'
+  'POST /sessions': {
+    controller: 'Session',
+    action: 'create'
+  },
+  'DESTROY /sessions/:id': {
+    controller: 'Session',
+    action: 'destroy'
+  },
+  'GET /sessions': {
+    controller: 'Session',
+    action: 'find'
+  }
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

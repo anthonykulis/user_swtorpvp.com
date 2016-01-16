@@ -15,7 +15,6 @@ module.exports = {
 
   create: function(req,res){
     User.create(req.body).exec(function(err, user){
-      console.log('created user', err, user);
       if(err){
         res.json(422,err);
       }
