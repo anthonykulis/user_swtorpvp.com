@@ -13,11 +13,12 @@ module.exports = {
       if(err) return res.json(500, err);
       Session.create({user: user.id, active: false}).exec(function(err, session){
         if(err) return res.json(500, err);
-        
-        User.update({id: user.id}, {session: session.id}).exec(function(err, user){
-          if(err) return res.json(500, err);
-          return res.json(user);
-        })
+        Profile.create({user: user.id}).exec(function(err, profile){
+          User.update({id: user.id}, {session: session.id, profile: profile.id}).exec(function(err, user){
+            if(err) return res.json(500, err);
+            return res.json(user);
+          });
+        });
       });
     });
   },
@@ -32,7 +33,11 @@ module.exports = {
 
   // TODO: Must be role based. Minimum role user
   findOne: function(req, res){
-    User.findOne({id: req.params.id}).populate('session').exec(function(err, user){
+    User
+    .findOne({id: req.params.id})
+    .populate('session')
+    .populate('profile')
+    .exec(function(err, user){
       if(err) return res.json(500,err);
       else return res.json(user);
     });
@@ -46,6 +51,16 @@ module.exports = {
       if(err) return res.json(500, err);
       return res.json(user);
     });
+  },
+
+  // TODO: Must be user only
+  patch: function(req,res){
+    pwd = req.body.password;
+    pwdc = req.body.password_confirmation;
+    User.update({id: req.params.id}, {password: pwd, password_confirmation: pwdc}).exec(function(err, user){
+      if(err) return res.json(422, err);
+      return res.json(user); 
+    })
   },
 
   // TODO: Only self user (or admin) can turn off accounts. Needs middleware
