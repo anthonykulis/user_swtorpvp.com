@@ -31,6 +31,7 @@ module.exports = {
     })(req, res);
   },
 
+  // TODO: Requires self or admin to destroy session
   destroy: function(req, res){
 
     // okay, user has to be logged in - I AM NOT 100% sure on this - might need update
@@ -46,6 +47,7 @@ module.exports = {
     });
   },
 
+  // TODO: Role based, only admin can see who is logged in 
   // not meant to be public.... so will eventually need to be authed and cross-referenced aganst role
   find: function(req, res){
     Session.find().populate('user').exec(function(err, sessions){
