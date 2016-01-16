@@ -37,6 +37,7 @@ module.exports.routes = {
   'GET /users': 'User.find',
   'GET /users/:id': 'User.findOne',
   'PUT /users/:id': 'User.update',
+  'PATCH /users/:id': 'User.patch',
   'DELETE /users/:id': 'User.destroy',
   
 

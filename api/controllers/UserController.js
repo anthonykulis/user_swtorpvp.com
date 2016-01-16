@@ -53,6 +53,16 @@ module.exports = {
     });
   },
 
+  // TODO: Must be user only
+  patch: function(req,res){
+    pwd = req.body.password;
+    pwdc = req.body.password_confirmation;
+    User.update({id: req.params.id}, {password: pwd, password_confirmation: pwdc}).exec(function(err, user){
+      if(err) return res.json(422, err);
+      return res.json(user); 
+    })
+  },
+
   // TODO: Only self user (or admin) can turn off accounts. Needs middleware
   destroy: function(req, res){
     User.update({id: req.params.id}, {active: false}).exec(function(err, user){
