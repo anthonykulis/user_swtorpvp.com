@@ -22,13 +22,17 @@ module.exports = {
       minLength: 8
     },
     emails_allowed: {
-      type: 'boolean'
+      type: 'boolean',
+      defaultsTo: false
     },
-
+    active: {
+      type: 'boolean',
+      defaultsTo: true
+    },
     session: {
       model: 'session'
     },
-    
+
     toJSON: function() {
         var obj = this.toObject();
         delete obj.password;
