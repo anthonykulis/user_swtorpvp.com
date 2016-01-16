@@ -9,12 +9,21 @@ var bcrypt = require('bcrypt');
 
 module.exports = {
 
+  uniqueEmail: false,
+
+  types: {
+    uniqueEmail: function(value){
+      return uniqueEmail;
+    }
+  },
+
   attributes: {
     email: {
       unique: true,
       required: true,
-      email: true,
-      type: 'string'
+      type: 'string',
+      email: 'true',
+      uniqueEmail: true
     },
     password: {
       required: true,
@@ -32,14 +41,13 @@ module.exports = {
     session: {
       model: 'session'
     },
-    profile: {
-      model: 'profile'
-    },
+    // profile: {
+    //   model: 'profile'
+    // },
 
     toJSON: function() {
         var obj = this.toObject();
         delete obj.password;
-        delete obj.password_confirmation;
         return obj;
     }
   },
@@ -65,6 +73,13 @@ module.exports = {
 
     console.log('done with beforeUpdate', user);
     cb();
+  },
+
+  beforeValidate: function(user, cb){
+    User.findOne({email: user.email}).exec(function(err, rec){
+      uniqueEmail = !(err || rec);
+      cb();
+    });
   },
 
   beforeCreate: function(user, cb) {
