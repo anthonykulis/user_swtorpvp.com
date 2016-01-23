@@ -53,7 +53,7 @@ module.exports = {
   },
 
   beforeUpdate: function(user, cb){
-
+    console.log('bv on user called');
     // no password update if not current user is user passed
     if(user.password && user.password_confirmation && user.password === user.password_confirmation)
       return this.beforeCreate(user, cb);
@@ -65,6 +65,7 @@ module.exports = {
   },
 
   beforeValidate: function(user, cb){
+
     User.findOne({email: user.email}).exec(function(err, rec){
       uniqueEmail = !(err || rec);
       cb();

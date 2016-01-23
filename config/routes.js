@@ -92,4 +92,15 @@ module.exports.routes = {
     action: 'destroy'
   },
 
+  // GROUP AS RESOURCE
+  'POST /groups/:group_id/roles': {
+    controller: 'GroupController',
+    action: 'addRoles'
+  },
+
+  'DELETE /groups/:group_id/roles': {
+    controller: 'GroupController',
+    action: 'removeRoles'
+  }
+
 };
