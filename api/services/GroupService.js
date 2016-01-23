@@ -25,6 +25,7 @@ module.exports = {
       });
 
       group.save(function(err, save){
+        console.log('save', err, save)
         cb(err, group);
       });
 

@@ -19,6 +19,10 @@ module.exports = {
     roles: {
       collection: 'role',
       via: 'groups'
+    },
+    users: {
+      collection: 'user',
+      via: 'groups'
     }
   },
 

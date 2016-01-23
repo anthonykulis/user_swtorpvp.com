@@ -33,20 +33,59 @@ module.exports.routes = {
   ***************************************************************************/
 
   // USERS
-  'POST /users': 'User.create',
-  'GET /users': 'User.find',
-  'GET /users/:id': 'User.findOne',
-  'PUT /users/:id': 'User.update',
-  'PATCH /users/:id': 'User.patch',
-  'DELETE /users/:id': 'User.destroy',
+  'POST /users': {
+    controller: 'UserController',
+    action: 'create'
+  },
+  'GET /users': {
+    controller: 'UserController',
+    action: 'find'
+  },
+  'GET /users/:id': {
+    controller: 'UserController',
+    action: 'findOne'
+  },
+  'PUT /users/:id': {
+    controller: 'UserController',
+    action: 'update'
+  },
+  'DELETE /users/:id': {
+    controller: 'UserController',
+    action: 'destroy'
+  },
   
+  // USER AS RESOURCE
+  'PUT /users/:user_id/groups': {
+    controller: 'UserController',
+    action: 'addGroups'
+  },
+
+  'DELETE /users/:user_id/groups': {
+    controller: 'UserController',
+    action: 'removeGroups'
+  },
+
+
+
+
 
   // SESSIONS
-  'POST /sessions': 'Session.create',
+  'POST /sessions': {
+    controller: 'SessionController',
+    action: 'create'
+  },
   
-  'GET /sessions': 'Session.find',
-  'GET /sessions/:id': 'Session.findOne',
-  'DESTROY /sessions/:id': 'Session.destroy',
+  'GET /sessions/:id': {
+    controller: 'SessionController',
+    action: 'findOne'
+  },
+  'DELETE /sessions/:id': {
+    controller: 'SessionController',
+    action: 'destroy'
+  },
+
+
+
   
   // ROLES
   'POST /roles': {
@@ -69,6 +108,9 @@ module.exports.routes = {
     controller: 'RoleController',
     action: 'destroy'
   },
+
+
+
 
   // GROUPS
   'POST /groups': {
@@ -93,7 +135,7 @@ module.exports.routes = {
   },
 
   // GROUP AS RESOURCE
-  'POST /groups/:group_id/roles': {
+  'PUT /groups/:group_id/roles': {
     controller: 'GroupController',
     action: 'addRoles'
   },

@@ -21,7 +21,7 @@ module.exports = {
     });
   },
   findOne: function(req, res){
-    Group.findOne({id: req.params.id}).populate('roles').exec(function(err, group){
+    Group.findOne({id: req.params.id}).populate('roles').populate('users').exec(function(err, group){
       if(err) return res.json(err.status || 500, err);
       return res.json(group);
     });
@@ -34,7 +34,7 @@ module.exports = {
     delete req.body.roles;
 
     Group.update(req.params.id, req.body).exec(function(err, group){
-      if(err) return res.json(err.status || 500, err);
+      if(err){ return res.json(err.status || 500, err); }
       return res.json(group);
     })
   },
@@ -50,7 +50,7 @@ module.exports = {
     error = GroupService.getRolesAsError(req.body.roles);
     if(error) return res.json(error.status, error);
     GroupService.manageRoles(req.params.group_id, req.body.roles, true, false, function(err, group){
-      if(err) return res.json(err.status || 500, err);
+      if(err) return res.json(err.status || 422, err);
       return res.json(group);
     });
   },
@@ -59,7 +59,7 @@ module.exports = {
     error = GroupService.getRolesAsError(req.body.roles);
     if(error) return res.json(error.status, error);
     GroupService.manageRoles(req.params.group_id, req.body.roles, false, true, function(err, group){
-      if(err) return res.json(err.status || 500, err);
+      if(err) return res.json(err.status || 422, err);
       return res.json(group);
     });
   },
