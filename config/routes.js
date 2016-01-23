@@ -33,30 +33,116 @@ module.exports.routes = {
   ***************************************************************************/
 
   // USERS
-  'POST /users': 'User.create',
-  'GET /users': 'User.find',
-  'GET /users/:id': 'User.findOne',
-  'PUT /users/:id': 'User.update',
-  'PATCH /users/:id': 'User.patch',
-  'DELETE /users/:id': 'User.destroy',
+  'POST /users': {
+    controller: 'UserController',
+    action: 'create'
+  },
+  'GET /users': {
+    controller: 'UserController',
+    action: 'find'
+  },
+  'GET /users/:id': {
+    controller: 'UserController',
+    action: 'findOne'
+  },
+  'PUT /users/:id': {
+    controller: 'UserController',
+    action: 'update'
+  },
+  'DELETE /users/:id': {
+    controller: 'UserController',
+    action: 'destroy'
+  },
   
+  // USER AS RESOURCE
+  'PUT /users/:user_id/groups': {
+    controller: 'UserController',
+    action: 'addGroups'
+  },
+
+  'DELETE /users/:user_id/groups': {
+    controller: 'UserController',
+    action: 'removeGroups'
+  },
+
+
+
+
 
   // SESSIONS
-  'POST /sessions': 'Session.create',
+  'POST /sessions': {
+    controller: 'SessionController',
+    action: 'create'
+  },
   
-  'GET /sessions': 'Session.find',
-  'GET /sessions/:id': 'Session.findOne',
-  'DESTROY /sessions/:id': 'Session.destroy',
-  
+  'GET /sessions/:id': {
+    controller: 'SessionController',
+    action: 'findOne'
+  },
+  'DELETE /sessions/:id': {
+    controller: 'SessionController',
+    action: 'destroy'
+  },
 
-  /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the custom routes above, it   *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
+
+
+  
+  // ROLES
+  'POST /roles': {
+    controller: 'RoleController',
+    action: 'create'
+  },
+  'GET /roles': {
+    controller: 'RoleController',
+    action: 'find'
+  },
+  'GET /roles/:id': {
+    controller: 'RoleController',
+    action: 'findOne'
+  },
+  'PUT /roles/:id': {
+    controller: 'RoleController',
+    action: 'update'
+  },
+  'DELETE /roles/:id': {
+    controller: 'RoleController',
+    action: 'destroy'
+  },
+
+
+
+
+  // GROUPS
+  'POST /groups': {
+    controller: 'GroupController',
+    action: 'create'
+  },
+  'GET /groups': {
+    controller: 'GroupController',
+    action: 'find'
+  },
+  'GET /groups/:id': {
+    controller: 'GroupController',
+    action: 'findOne'
+  },
+  'PUT /groups/:id': {
+    controller: 'GroupController',
+    action: 'update'
+  },
+  'DELETE /groups/:id': {
+    controller: 'GroupController',
+    action: 'destroy'
+  },
+
+  // GROUP AS RESOURCE
+  'PUT /groups/:group_id/roles': {
+    controller: 'GroupController',
+    action: 'addRoles'
+  },
+
+  'DELETE /groups/:group_id/roles': {
+    controller: 'GroupController',
+    action: 'removeRoles'
+  }
 
 };
