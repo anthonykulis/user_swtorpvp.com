@@ -1,39 +1,39 @@
 /**
- * RoleController
+ * GroupsController
  *
- * @description :: Server-side logic for managing Roles
+ * @description :: Server-side logic for managing Groups
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+
 // all CRUD ops need admin role
 module.exports = {
-	create: function(req, res){
-    Role.create(req.body).exec(function(err, role){
+  create: function(req, res){
+    Group.create(req.body).exec(function(err, group){
       if(err) return res.json(err.status || 500, err);
-      return res.json(role);
+      return res.json(group);
     });
   },
   find: function(req, res){
-    Role.find().exec(function(err, roles){
+    Group.find().exec(function(err, groups){
       if(err) return res.json(err.status || 500, err);
-      return res.json(roles);
+      return res.json(groups);
     });
   },
   findOne: function(req, res){
-    Role.findOne({id: req.params.id}).exec(function(err, role){
+    Group.findOne({id: req.params.id}).populate('roles').exec(function(err, group){
       if(err) return res.json(err.status || 500, err);
-      return res.json(role);
+      return res.json(group);
     });
   },
   update: function(req,res){
-    Role.update({id: req.params.id}, req.body).exec(function(err, role){
+    Group.update({id: req.params.id}, req.body).exec(function(err, group){
       if(err) return res.json(err.status || 500, err);
-      return res.json(role);
+      return res.json(group);
     })
   },
   destroy: function(req, res){
-    console.log('destroying', req.params.id)
-    Role.destroy({id: req.params.id}).exec(function(err){
+    Group.destroy({id: req.params.id}).exec(function(err, group){
       if(err) return res.json(err.status || 500, err);
       return res.json({});
     })

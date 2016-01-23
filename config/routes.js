@@ -65,20 +65,31 @@ module.exports.routes = {
     controller: 'RoleController',
     action: 'update'
   },
-  'DESTROY /roles/:id': {
+  'DELETE /roles/:id': {
     controller: 'RoleController',
     action: 'destroy'
   },
 
-
-  /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  * If a request to a URL doesn't match any of the custom routes above, it   *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
+  // GROUPS
+  'POST /groups': {
+    controller: 'GroupController',
+    action: 'create'
+  },
+  'GET /groups': {
+    controller: 'GroupController',
+    action: 'find'
+  },
+  'GET /groups/:id': {
+    controller: 'GroupController',
+    action: 'findOne'
+  },
+  'PUT /groups/:id': {
+    controller: 'GroupController',
+    action: 'update'
+  },
+  'DELETE /groups/:id': {
+    controller: 'GroupController',
+    action: 'destroy'
+  },
 
 };
