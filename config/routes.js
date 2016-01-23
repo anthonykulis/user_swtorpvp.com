@@ -48,6 +48,28 @@ module.exports.routes = {
   'GET /sessions/:id': 'Session.findOne',
   'DESTROY /sessions/:id': 'Session.destroy',
   
+  // ROLES
+  'POST /roles': {
+    controller: 'RoleController',
+    action: 'create'
+  },
+  'GET /roles': {
+    controller: 'RoleController',
+    action: 'find'
+  },
+  'GET /roles/:id': {
+    controller: 'RoleController',
+    action: 'findOne'
+  },
+  'PUT /roles/:id': {
+    controller: 'RoleController',
+    action: 'update'
+  },
+  'DESTROY /roles/:id': {
+    controller: 'RoleController',
+    action: 'destroy'
+  },
+
 
   /***************************************************************************
   *                                                                          *
