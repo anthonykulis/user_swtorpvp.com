@@ -15,6 +15,7 @@ module.exports = {
       return error;
     }
   },
+  
   manageGroups: function(user_id, groups, add, remove, cb){
 
     User.findOne(user_id).exec(function(err, user){

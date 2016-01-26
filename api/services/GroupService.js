@@ -1,6 +1,7 @@
 
 module.exports = {
 
+
   getRolesAsError: function(roles){
     if(!(roles && _.isArray(roles))){
       error = {
