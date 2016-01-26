@@ -38,6 +38,7 @@ module.exports = {
     .findOne({id: req.params.id})
     .populate('session')
     .populate('profile')
+    .populate('groups')
     .exec(function(err, user){
       if(err) return res.json(500,err);
       else return res.json(user);
@@ -76,8 +77,28 @@ module.exports = {
     });
   },
 
-  addGroups: function(req, res){},
-  removeGroups: function(req,res){}
+  addGroups: function(req, res){
+    err = UserService.getGroupsAsError(req.body.groups);
+    if(err) return res.json(422, err);
+    UserService.manageGroups(req.params.user_id, req.body.groups, true, false, function(err, user){
+      if(err){
+        console.log(err);
+        return res.json(err.status || 422, err);
+      }
+      return res.json(user);
+    })
+  },
+  removeGroups: function(req,res){
+    err = UserService.getGroupsAsError(req.body.groups);
+    if(err) return res.json(422, err);
+    UserService.manageGroups(req.params.user_id, req.body.groups, false, true, function(err, user){
+      if(err){
+        console.log(err);
+        return res.json(err.status || 422, err);
+      }
+      return res.json(user);
+    })   
+  }
 
 
 };
