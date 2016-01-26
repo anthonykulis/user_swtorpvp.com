@@ -44,10 +44,6 @@ module.exports = {
     profile: {
       model: 'profile'
     },
-    groups: {
-      collection: 'group',
-      via: 'users'
-    },
 
     toJSON: function() {
         var obj = this.toObject();
@@ -57,26 +53,26 @@ module.exports = {
   },
 
   beforeUpdate: function(user, cb){
+
     // no password update if not current user is user passed
     if(user.password && user.password_confirmation && user.password === user.password_confirmation)
       return this.beforeCreate(user, cb);
 
     // cannot deactivate account here but can be activated here
-    // if(_.has(user, 'active') && user.active !== true) delete user.active
+    if(_.has(user, 'active') && user.active !== true) delete user.active
 
     cb();
   },
 
   beforeValidate: function(user, cb){
-
-    // we only want this uniqueness if users email is not the user we are updating
     User.findOne({email: user.email}).exec(function(err, rec){
-      uniqueEmail = !(err || (rec && rec.id !== user.id));
+      uniqueEmail = !(err || rec);
       cb();
     });
   },
 
   beforeCreate: function(user, cb) {
+
     if(user.password !== user.password_confirmation){
       // todo: needs to go to error parser/builder
       error = {
