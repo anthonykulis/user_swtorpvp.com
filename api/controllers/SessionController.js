@@ -8,9 +8,10 @@
 var passport = require('passport');
 module.exports = {
   create: function(req, res) {
+    console.log('on create session', req.body);
     passport.authenticate('local', function(err, user, info) {
       if(err){ return res.json(500, err);}
-      if(!user){ return res.json(422, {}); }
+      if(!user){ return res.json(422, info); }
       Session.findOrCreate({user: user.id}, {user: user.id, active: true}).exec(function(err, session){
         if(err){ return res.json(500, err); }
         return res.json(session);
