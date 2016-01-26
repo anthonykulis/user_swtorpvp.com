@@ -41,8 +41,11 @@ module.exports = {
     .populate('groups')
     .exec(function(err, user){
       if(err) return res.json(500,err);
-      user.isAuthenticated = req.isAuthenticated();
-      else return res.json(user);
+      else{
+        user.isAuthenticated = req.isAuthenticated();
+        user.req_session = req.session;
+        return res.json(user);
+      }
     });
   },
 

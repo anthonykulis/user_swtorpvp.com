@@ -9,7 +9,7 @@
 var passport = require('passport');
 module.exports = {
   create: function(req, res) {
-    console.log('on create session', req.body);
+    console.log('on create session', req.body, req.sessionStore);
     passport.authenticate('local', function(err, user, info) {
       console.log('trying to login', user)
       if(err){ return res.json(500, err);}
@@ -18,7 +18,7 @@ module.exports = {
         if(err) return res.json(401, err);
         Session.update({user: user.id}, {user: user.id, active: true}).exec(function(err, session){
           if(err){ return res.json(500, err); }
-          return res.json({session: session.shift(), auth: req.user});
+          return res.json({session: session.shift(), auth: req.user, auth2: req.sessionStore});
         });
       })
       

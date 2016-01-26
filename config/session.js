@@ -43,10 +43,11 @@ module.exports.session = {
 
 
   adapter: 'redis',
-  host: process.env.REDIS_HOST,
-  port: process.env.REDIS_PORT,
-  db: process.env.REDIS_DB,
-  pass: process.env.REDIS_PASSWORD
+  url: 'redis://h:p8qbn5jtkof2e4c2vnbitup4v1q@ec2-54-83-39-131.compute-1.amazonaws.com:20289',
+  // host: process.env.REDIS_HOST || 'localhost',
+  // port: process.env.REDIS_PORT || 6379,
+  // db: process.env.REDIS_DB || null,
+  // pass: process.env.REDIS_PASSWORD || null
   // adapter: 'redis',
 
 
