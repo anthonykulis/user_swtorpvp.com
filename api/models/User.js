@@ -49,7 +49,6 @@ module.exports = {
       collection: 'group',
       via: 'users'
     },
-
     toJSON: function() {
         var obj = this.toObject();
         delete obj.password;
@@ -58,6 +57,7 @@ module.exports = {
   },
 
   beforeUpdate: function(user, cb){
+
     // no password update if not current user is user passed
     if(user.password && user.password_confirmation && user.password === user.password_confirmation)
       return this.beforeCreate(user, cb);
@@ -69,8 +69,6 @@ module.exports = {
   },
 
   beforeValidate: function(user, cb){
-
-    // we only want this uniqueness if users email is not the user we are updating
     User.findOne({email: user.email}).exec(function(err, rec){
       uniqueEmail = !(err || (rec && rec.id !== user.id));
       cb();
@@ -78,6 +76,7 @@ module.exports = {
   },
 
   beforeCreate: function(user, cb) {
+
     if(user.password !== user.password_confirmation){
       // todo: needs to go to error parser/builder
       error = {

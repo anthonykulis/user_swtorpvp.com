@@ -33,7 +33,6 @@ module.exports = {
   },
 
   // TODO: Must be role based. Minimum role user
-  // note population should only be for role admin
   findOne: function(req, res){
     User
     .findOne({id: req.params.id})

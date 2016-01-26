@@ -1,5 +1,6 @@
 // user service to hold various reusable and specialized methods
 module.exports = {
+
   getGroupsAsError: function(groups){
     if(!(groups && _.isArray(groups))){
       error = {
@@ -17,7 +18,6 @@ module.exports = {
   },
   
   manageGroups: function(user_id, groups, add, remove, cb){
-
     User.findOne(user_id).exec(function(err, user){
       if(err) return cb(err);
       _.each(groups, function(id){
@@ -37,5 +37,6 @@ module.exports = {
     //   cb(err, user);
     // });
   }
+
 
 };

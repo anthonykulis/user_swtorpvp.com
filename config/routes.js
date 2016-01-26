@@ -20,6 +20,7 @@
  * http://sailsjs.org/#!/documentation/concepts/Routes/RouteTargetSyntax.html
  */
 
+
 module.exports.routes = {
 
   /***************************************************************************
@@ -66,10 +67,6 @@ module.exports.routes = {
     action: 'removeGroups'
   },
 
-
-
-
-
   // SESSIONS
   'POST /sessions': {
     controller: 'SessionController',
@@ -84,9 +81,6 @@ module.exports.routes = {
     controller: 'SessionController',
     action: 'destroy'
   },
-
-
-
   
   // ROLES
   'POST /roles': {
