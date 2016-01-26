@@ -5,6 +5,7 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 
+
 module.exports = {
 
   // Todo: Will need an email confirmation to activate account

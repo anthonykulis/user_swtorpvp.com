@@ -5,6 +5,7 @@
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
+
 var bcrypt = require('bcrypt');
 
 module.exports = {
@@ -43,6 +44,11 @@ module.exports = {
     },
     profile: {
       model: 'profile'
+    },
+
+    groups: {
+      collection: 'group',
+      via: 'users'
     },
 
     toJSON: function() {
