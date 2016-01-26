@@ -45,10 +45,12 @@ module.exports = {
     profile: {
       model: 'profile'
     },
+
     groups: {
       collection: 'group',
       via: 'users'
     },
+
     toJSON: function() {
         var obj = this.toObject();
         delete obj.password;
@@ -63,14 +65,14 @@ module.exports = {
       return this.beforeCreate(user, cb);
 
     // cannot deactivate account here but can be activated here
-    // if(_.has(user, 'active') && user.active !== true) delete user.active
+    if(_.has(user, 'active') && user.active !== true) delete user.active
 
     cb();
   },
 
   beforeValidate: function(user, cb){
     User.findOne({email: user.email}).exec(function(err, rec){
-      uniqueEmail = !(err || (rec && rec.id !== user.id));
+      uniqueEmail = !(err || rec);
       cb();
     });
   },

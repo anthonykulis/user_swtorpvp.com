@@ -1,6 +1,7 @@
 // user service to hold various reusable and specialized methods
 module.exports = {
 
+
   getGroupsAsError: function(groups){
     if(!(groups && _.isArray(groups))){
       error = {
@@ -37,6 +38,7 @@ module.exports = {
     //   cb(err, user);
     // });
   }
+
 
 
 };
