@@ -74,7 +74,11 @@ module.exports = {
       });
 
     });
-  }
+  },
+
+  addGroups: function(req, res){},
+  removeGroups: function(req,res){}
+
 
 };
 
